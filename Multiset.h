@@ -10,14 +10,17 @@ class Multiset{
         Element *next_;
         explicit Element(T value):information_(value), next_(NULL){};
     }*head_;
+    void Clear();
 public:
     Multiset();
-    Multiset(Multiset&);
+    Multiset(const Multiset<T>&);
+    Multiset<T>& operator=(const Multiset<T>&);
     void Push(T);
     void Delete(T);
     void DeleteAll(T);
-    unsigned int Count(const T) const;
-    bool Belongs(const T) const;
+    unsigned int Count(T) const;
+    unsigned int CountAll() const;
+    bool Belongs(T) const;
     template <class U>friend std::ostream& operator<<(std::ostream&, const Multiset<U>&);
     template <class U> void Transform(U*);
     ~Multiset();
