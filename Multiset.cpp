@@ -114,8 +114,9 @@ std::ostream& operator<<(std::ostream& output, const Multiset<T>& set) {
 
 template<class T>
 template<class U>
-void Multiset<T>::Transform(U*) {
-
+void Multiset<T>::Transform(U transform) {
+    for(auto aux = head_; aux; aux = aux->next_)
+        aux->information_ = transform(aux->information_);
 }
 
 template <class T>

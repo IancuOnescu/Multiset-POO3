@@ -21,8 +21,8 @@ public:
     unsigned int Count(T) const;
     unsigned int CountAll() const;
     bool Belongs(T) const;
-    template <class U>friend std::ostream& operator<<(std::ostream&, const Multiset<U>&);
-    template <class U> void Transform(U*);
+    template <class U> friend std::ostream& operator<<(std::ostream&, const Multiset<U>&);
+    template <class U> void Transform(U);
     ~Multiset();
 };
 
