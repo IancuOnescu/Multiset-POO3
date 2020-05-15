@@ -2,6 +2,9 @@
 #define MULTISET_POO3_MULTISET_H
 
 #include<iostream>
+#define NDEBUG
+#include<cassert>
+#include<exception>
 
 template<class T>
 class Multiset{

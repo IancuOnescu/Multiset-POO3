@@ -53,5 +53,9 @@ int main() {
     Increment plusTwo(2);
     ms.Transform(plusTwo);
     std::cout << ms; // 9 10 10 10 11
+
+    //for assert debugging
+    Multiset<int> set;
+    std::cout << set;
     return 0;
 }

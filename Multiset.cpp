@@ -39,7 +39,11 @@ Multiset<T>& Multiset<T>::operator=(const Multiset<T>& objToCopy) {
 template<class T>
 void Multiset<T>::Push(T value) {
     if(head_ == NULL) {
-        head_ = new Element(value);
+        try {
+            head_ = new Element(value);
+        } catch (std::exception& e) {
+            std::cout << e.what() << "\n";
+        }
         return;
     }
 
@@ -47,7 +51,13 @@ void Multiset<T>::Push(T value) {
     Element* aux2 = head_->next_;
     while(aux2 != NULL && aux2->information_ < value)
         aux1 = aux1->next_, aux2 = aux2->next_;
-    auto newElem = new Element(value);
+
+    Element* newElem = NULL;
+    try {
+        newElem = new Element(value);
+    } catch (std::exception& e) {
+        std::cout << e.what() << "\n";
+    }
     aux1->next_ = newElem;
     newElem->next_ = aux2;
 }
@@ -69,7 +79,6 @@ void Multiset<T>::Delete(T value) {
         return;
     aux1->next_ = aux2->next_;
     delete aux2;
-
 }
 
 template<class T>
@@ -106,6 +115,7 @@ bool Multiset<T>::Belongs(const T value) const {
 
 template<class T>
 std::ostream& operator<<(std::ostream& output, const Multiset<T>& set) {
+    assert(set.head_ != NULL);
     for(auto aux = set.head_; aux; aux=aux->next_)
         output << aux->information_ << " ";
     output << std::endl;
@@ -115,6 +125,7 @@ std::ostream& operator<<(std::ostream& output, const Multiset<T>& set) {
 template<class T>
 template<class U>
 void Multiset<T>::Transform(U transform) {
+    assert(head_ != NULL);
     for(auto aux = head_; aux; aux = aux->next_)
         aux->information_ = transform(aux->information_);
 }
